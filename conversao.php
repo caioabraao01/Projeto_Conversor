@@ -1,29 +1,3 @@
-<?php
-$resultado = "";
-
-if (isset($_GET["valor"])) {
-    $anos_luz = $_GET["valor"];
-    $km = 9460730472580.8;
-    $conversao = $anos_luz * $km;
-
-    if ($anos_luz >= 1) {
-        $resultado = "A conversão para KM é: " . number_format($conversao, 2, ",", ".");
-    } else {
-        $resultado = 'Erro: Insira um valor válido para Anos Luz.';
-    }
-} elseif (isset($_GET["valor2"])) {
-    $km1 = $_GET["valor2"];
-    $anos_luz1 = 1.0570;
-    $conversao1 = $km1 * $anos_luz1;
-
-    if ($km1 >= 1) {
-        $resultado = "A conversão para Anos Luz é: " . number_format($conversao1, 3, ",", ".");
-    } else {
-        $resultado = 'Erro: Insira um valor válido para KM.';
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -45,7 +19,19 @@ if (isset($_GET["valor"])) {
                         <input type="number" name="valor" id="valor" step="1.0">
                         <input type="submit" name="converter" value="Converter">
                     </form>
-                    <?php if (!empty($resultado)) echo $resultado; ?>
+                    <?php
+                    if (isset($_GET["valor"])) {
+                        $anos_luz = $_GET["valor"];
+                        $km = 9460730472580.8;
+                        $conversao = $anos_luz * $km;
+
+                        if ($anos_luz >= 1) {
+                            echo "A conversão para KM é: " . number_format($conversao, 2, ",", ".");
+                        } else {
+                            echo 'Erro: Insira um valor válido para Anos Luz.';
+                        }
+                    }
+                    ?>
                 </main>
             </div>
         </div>
@@ -59,7 +45,19 @@ if (isset($_GET["valor"])) {
                         <input type="number" name="valor2" id="valor2" step="1.0">
                         <input type="submit" name="converter" value="Converter">
                     </form>
-                    <?php if (!empty($resultado)) echo $resultado; ?>
+                    <?php
+                    if (isset($_GET["valor2"])) {
+                        $km1 = $_GET["valor2"];
+                        $anos_luz1 = 1.0570;
+                        $conversao1 = $km1 * $anos_luz1;
+
+                        if ($km1 >= 1) {
+                            echo "A conversão para Anos Luz é: " . number_format($conversao1, 3, ",", ".");
+                        } else {
+                            echo 'Erro: Insira um valor válido para KM.';
+                        }
+                    }
+                    ?>
                 </main>
             </div>        
         </div>
