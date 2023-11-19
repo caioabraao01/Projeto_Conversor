@@ -1,4 +1,4 @@
-## Projeto Conversor Anos Luz para KM e KM para Anoos Luz  ##
+## Projeto Conversor Anos Luz para KM e KM para Anos Luz  ##
 
 Fiz um projeto de conversão utilizando a linguagem PHP e CSS para customização do site.
 
