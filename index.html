@@ -1,66 +1,60 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="estilo.css">
-    <title>Conversão</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Anos Luz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-    <div id="teste">
-        <div id="ANL">
-            <div>
-                <main>
-                    <h1>Conversor Anos Luz</h1>
-                    <form action="" method="get">
-                        <label for="valor">Entre com valor de Anos Luz</label>
-                        <input type="number" name="valor" id="valor" step="1.0">
-                        <input type="submit" name="converter" value="Converter">
-                    </form>
-                    <?php
-                    if (isset($_GET["valor"])) {
-                        $anos_luz = $_GET["valor"];
-                        $km = 9460730472580.8;
-                        $conversao = $anos_luz * $km;
+<div class="card">
+    <h2>De Anos Luz para Quilômetros</h2>
+    <form method="post">
+        <label for="anosLuzInput">Informe a distância em Anos Luz:</label>
+        <input type="number" step="any" name="anosLuzInput" required>
+        <button type="submit">Converter</button>
+    </form>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $anosLuz = $_POST["anosLuzInput"];
+        $quilometros = $anosLuz * 9.461e12; // 1 ano luz = 9.461e12 km
+        echo "<p>$anosLuz Anos Luz é aproximadamente $quilometros Quilômetros</p>";
+    }
+    ?>
+</div>
 
-                        if ($anos_luz >= 1) {
-                            echo "A conversão para KM é: " . number_format($conversao, 2, ",", ".");
-                        } else {
-                            echo 'Erro: Insira um valor válido para Anos Luz.';
-                        }
-                    }
-                    ?>
-                </main>
-            </div>
-        </div>
-                
-        <div id="KM"> 
-            <div>
-                <main>
-                    <h1>Conversor KM</h1>
-                    <form action="" method="get">
-                        <label for="valor2">Entre com valor de KM</label>
-                        <input type="number" name="valor2" id="valor2" step="1.0">
-                        <input type="submit" name="converter" value="Converter">
-                    </form>
-                    <?php
-                    if (isset($_GET["valor2"])) {
-                        $km1 = $_GET["valor2"];
-                        $anos_luz1 = 1.0570;
-                        $conversao1 = $km1 * $anos_luz1;
+<div class="card">
+    <h2>De Quilômetros para Anos Luz</h2>
+    <form method="post">
+        <label for="quilometrosInput">Informe a distância em Quilômetros:</label>
+        <input type="number" step="any" name="quilometrosInput" required>
+        <button type="submit">Converter</button>
+    </form>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $quilometros = $_POST["quilometrosInput"];
+        $anosLuz = $quilometros / 9.461e12; // 1 ano luz = 9.461e12 km
+        echo "<p>$quilometros Quilômetros é aproximadamente $anosLuz Anos Luz</p>";
+    }
+    ?>
+</div>
 
-                        if ($km1 >= 1) {
-                            echo "A conversão para Anos Luz é: " . number_format($conversao1, 3, ",", ".");
-                        } else {
-                            echo 'Erro: Insira um valor válido para KM.';
-                        }
-                    }
-                    ?>
-                </main>
-            </div>        
-        </div>
-    </div>
 </body>
 </html>
